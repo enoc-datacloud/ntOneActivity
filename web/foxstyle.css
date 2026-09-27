@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 
-/* --- MGS Theme Variables --- */
+
 :root {
     --mgs-green: #00ff41;
     --mgs-green-dim: rgba(0, 255, 65, 0.3);
@@ -19,18 +19,27 @@
 }
 
 body {
+    
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--mgs-dark);
-    background-image: 
-        radial-gradient(circle at center, #1a2b1a 0%, #0a0a0a 100%),
-        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
-    background-size: 100% 100%, 30px 30px, 30px 30px;
     padding: 20px;
     overflow-x: hidden;
+
+    background-color: var(--mgs-dark);
+    color: var(--mgs-text);
+    font-family: 'Michroma', sans-serif;
+
+    background-image: 
+       
+        linear-gradient(rgba(10, 15, 10, 0.85), rgba(10, 15, 10, 0.95)),
+        url('foxhound.jpg'); 
+        
+    background-size: cover;         
+    background-position: center;    
+    background-repeat: no-repeat;   
+    background-attachment: fixed;   
 }
 
 /* --- Form Container (Glassmorphism) --- */
