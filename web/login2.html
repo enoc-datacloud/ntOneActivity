@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOXHOUND LOGIN</title>
+    <link rel="stylesheet" href="foxstyle.css">
+</head>
+<body>
+
+    <div class="form-box">
+        <div class="form-header">
+            <h2>SYSTEM LOGIN</h2>
+            <p>TACTICAL ESPIONAGE ACTION</p>
+        </div>
+        <form action="#" method="POST" id="loginForm">
+            <div class="input-group">
+                <label for="login-user">CODENAME</label>
+                <div class="input-wrapper">
+                    <input type="text" id="login-user" placeholder="ENTER CODENAME" required>
+                </div>
+            </div>
+            
+            
+            <div class="input-group">
+                <label for="login-pass">ACCESS CODE</label>
+                <div class="input-wrapper">
+                    <input type="password" id="login-pass" placeholder="ENTER PASSWORD" required>
+                </div>
+            
+                <div id="password-error" class="error-msg"></div>
+            </div>
+            
+            <button type="submit" class="btn" id="login-btn">LOGIN</button>
+            
+            
+            <div id="system-warning" class="warning-msg"></div>
+            
+            <p class="switch-link">DON'T HAVE AN ACCOUNT? <a href="register2.html">REGISTER</a></p>
+        </form>
+    </div>
+
+    <!-- VALIDATION, REDIRECT, & LOCKOUT SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const passwordInput = document.getElementById('login-pass');
+            const usernameInput = document.getElementById('login-user');
+            const errorMsg = document.getElementById('password-error');
+            const warningMsg = document.getElementById('system-warning'); 
+            const loginButton = document.getElementById('login-btn');
+            
+            let isPasswordValid = false;
+            let failedAttempts = 0;
+
+            
+            passwordInput.addEventListener('input', function() {
+                if (loginButton.disabled) return;
+
+               
+                warningMsg.innerHTML = '';
+
+                const val = this.value;
+                let errors = [];
+
+                if (val.length > 0) {
+                    if (!/^[a-zA-Z]/.test(val)) errors.push("> INVALID: Must start with a letter.");
+                    if (!/[A-Z]/.test(val)) errors.push("> INVALID: Requires at least one capital letter.");
+                    if (val.length < 8) errors.push("> INVALID: Access code too short (Min 8 chars).");
+                }
+
+                if (errors.length > 0) {
+                    errorMsg.style.display = 'block';
+                    errorMsg.innerHTML = errors.join('<br>');
+                    passwordInput.style.borderBottomColor = 'var(--mgs-alert)';
+                    isPasswordValid = false;
+                } else {
+                    errorMsg.style.display = 'none';
+                    passwordInput.style.borderBottomColor = val.length > 0 ? 'var(--mgs-green)' : 'var(--mgs-green-dim)';
+                    isPasswordValid = val.length > 0; 
+                }
+            });
+
+           
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                if (loginButton.disabled) return;
+
+                if (!loginForm.checkValidity()) {
+                    loginForm.reportValidity();
+                    return;
+                }
+
+                
+                if (isPasswordValid) {
+                    window.location.href = 'mgs.html';
+                } else {
+                    // INVALID ATTEMPT
+                    failedAttempts++;
+                    passwordInput.dispatchEvent(new Event('input')); 
+
+                    if (failedAttempts >= 5) {
+                       
+                        loginButton.disabled = true;
+                        loginButton.classList.add('locked');
+                        loginButton.textContent = 'SYSTEM LOCKED';
+                        
+                        passwordInput.disabled = true;
+                        usernameInput.disabled = true;
+                        
+                       
+                        warningMsg.innerHTML = "> CRITICAL ERROR: MAX ATTEMPTS REACHED. TERMINAL LOCKED. REFRESH BROWSER TO REBOOT.";
+                        warningMsg.style.fontWeight = "bold";
+                    } else {
+                        
+                        warningMsg.innerHTML = `> WARNING: Invalid Access. Attempts remaining: ${5 - failedAttempts}`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

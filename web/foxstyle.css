@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+/* --- MGS Theme Variables --- */
+:root {
+    --mgs-green: #00ff41;
+    --mgs-green-dim: rgba(0, 255, 65, 0.3);
+    --mgs-dark: #0a0f0a;
+    --mgs-dark-glass: rgba(10, 20, 10, 0.85);
+    --mgs-text: #e0e0e0;
+    --mgs-alert: #ffe600f5;
+}
+
+/* --- Global Resets & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Michroma', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mgs-dark);
+    background-image: 
+        radial-gradient(circle at center, #1a2b1a 0%, #0a0a0a 100%),
+        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* --- Form Container (Glassmorphism) --- */
+.form-box {
+    background: var(--mgs-dark-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--mgs-green);
+    box-shadow: 0 0 20px var(--mgs-green-dim), inset 0 0 10px rgba(0, 255, 65, 0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    border-radius: 4px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.form-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 20px; height: 20px;
+    background: var(--mgs-green);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--mgs-green-dim);
+    padding-bottom: 1rem;
+}
+
+.form-header h2 {
+    color: var(--mgs-green);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px var(--mgs-green-dim);
+}
+
+.form-header p {
+    color: var(--mgs-text);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    opacity: 0.7;
+}
+
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    color: var(--mgs-green);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--mgs-green-dim);
+    color: var(--mgs-text);
+    padding: 10px 30px 10px 0;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    border-bottom: 1px solid var(--mgs-green);
+    box-shadow: 0 1px 0 0 var(--mgs-green);
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(224, 224, 224, 0.3);
+    font-size: 0.8rem;
+}
+
+.input-wrapper .icon {
+    position: absolute;
+    right: 0;
+    color: var(--mgs-green);
+    opacity: 0.6;
+    font-size: 1.2rem;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--mgs-text);
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    accent-color: var(--mgs-green);
+    cursor: pointer;
+}
+
+.options a {
+    color: var(--mgs-green);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.options a:hover {
+    text-shadow: 0 0 5px var(--mgs-green);
+}
+
+/* --- Buttons --- */
+.btn {
+    width: 100%;
+    background: var(--mgs-green);
+    color: var(--mgs-dark);
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+.btn:hover {
+    background: #fff;
+    box-shadow: 0 0 15px var(--mgs-green);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* --- Switch Links --- */
+.switch-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--mgs-text);
+}
+
+.switch-link a {
+    color: var(--mgs-green);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.switch-link a:hover {
+    text-shadow: 0 0 5px var(--mgs-green);
+    text-decoration: underline;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 480px) {
+    .form-box {
+        padding: 1.5rem;
+        clip-path: none; 
+        border-radius: 8px;
+    }
+    .form-box::after {
+        display: none; 
+    }
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    .input-wrapper input {
+        font-size: 0.9rem;
+    }
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+.error-msg {
+    display: none; 
+    color: var(--mgs-alert); 
+    font-size: 0.65rem;
+    font-family: 'Michroma', monospace;
+    margin-top: 8px;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    word-wrap: break-word; 
+}
+
+
+.warning-msg {
+    display: block;
+    color: var(--mgs-alert);
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-shadow: 0 0 5px rgba(255, 0, 60, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn.locked {
+    background-color: var(--mgs-alert) !important;
+    color: #ffffff !important;
+    cursor: not-allowed;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.5) !important;
+    clip-path: none; 
+    border-radius: 4px;
+}
+
+.btn.locked:hover {
+    background-color: var(--mgs-alert) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.5) !important;
+}
+
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
